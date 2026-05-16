@@ -1,0 +1,26 @@
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: #eff6ff;
+  background-image: url("./images/ChatGPT Image 15 de mai. de 2026, 17_22_17.png");
+  background-size: 100% 100vh;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (max-width: 720px) {
+  #root {
+    background-size: auto 100vh;
+    background-position: center bottom;
+  }
+}

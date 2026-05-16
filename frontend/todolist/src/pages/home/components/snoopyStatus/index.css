@@ -1,0 +1,60 @@
+.snoopy-status {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 2;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.snoopy-status__gif {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+.snoopy-status__label {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 #222;
+  background: #fff;
+  color: #222;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .snoopy-status {
+    position: static;
+    width: min(680px, calc(100% - 28px));
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .snoopy-status__gif {
+    width: 96px;
+    height: 96px;
+  }
+
+  .snoopy-status__label {
+    width: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .snoopy-status {
+    width: calc(100% - 20px);
+  }
+
+  .snoopy-status__label {
+    flex: 1;
+  }
+}

@@ -1,0 +1,59 @@
+.progress-card {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 4;
+  width: 260px;
+  padding: 16px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 #222;
+  background: #fff;
+}
+
+.progress-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #222;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.progress-card__track {
+  height: 14px;
+  margin-top: 12px;
+  overflow: hidden;
+  border: 2px solid #222;
+  border-radius: 999px;
+  background: #e8eef8;
+}
+
+.progress-card__bar {
+  height: 100%;
+  border-right: 2px solid #222;
+  background: linear-gradient(90deg, #ffd92f, #54b7ff);
+  transition: width 0.35s ease;
+}
+
+.progress-card__details {
+  margin: 10px 0 0;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .progress-card {
+    position: static;
+    width: min(680px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .progress-card {
+    width: calc(100% - 20px);
+  }
+}

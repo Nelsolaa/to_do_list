@@ -1,0 +1,83 @@
+.task-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.task-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(15, 23, 42, 0.46);
+  cursor: pointer;
+}
+
+.task-modal__content {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 100%);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  box-shadow: 7px 7px 0 #222;
+  background: #fff;
+}
+
+.task-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.task-modal__header h2 {
+  margin: 0;
+  color: #222;
+  font-size: 22px;
+}
+
+.task-modal__close,
+.task-modal__submit {
+  border: 2px solid #222;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #222;
+  background: #ffd92f;
+  color: #222;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.task-modal__close {
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+}
+
+.task-modal__input {
+  height: 44px;
+  padding: 0 12px;
+  border: 2px solid #222;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #222;
+  color: #222;
+  font-size: 15px;
+  font-weight: 700;
+  outline: none;
+}
+
+.task-modal__input:focus {
+  border-color: #2d8cf0;
+}
+
+.task-modal__submit {
+  min-height: 42px;
+  padding: 0 18px;
+  align-self: flex-end;
+  background: #54b7ff;
+}
