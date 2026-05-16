@@ -8,6 +8,8 @@ O projeto é dividido em duas partes principais:
 - `backend/api`: API RESTful, autenticação, usuários, tarefas, banco PostgreSQL e documentação Swagger.
 
 ## Visão Geral
+<img width="1906" height="944" alt="image" src="https://github.com/user-attachments/assets/19bc959a-a1d7-45f8-8620-94affc364aaa" />
+URL:https://to-do-list-phi-green-35.vercel.app/
 
 O sistema permite que um usuário crie conta, faça login e gerencie suas próprias tarefas. Cada tarefa pertence ao usuário autenticado, e as rotas de tarefas são protegidas por JWT.
 
