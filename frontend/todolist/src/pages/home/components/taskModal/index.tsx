@@ -7,19 +7,39 @@ type TaskModalProps = {
   placeholder: string
   submitLabel: string
   initialValue?: string
+  initialDescription?: string | null
+  descriptionPlaceholder?: string
+  showDescription?: boolean
   onClose: () => void
-  onSubmit: (value: string) => void | Promise<void>
+  onSubmit: (value: TaskModalValue) => void | Promise<void>
+}
+
+type TaskModalValue = {
+  title: string
+  description: string | null
 }
 
 function TaskModal(taskModalProps: TaskModalProps) {
-  const { title, placeholder, submitLabel, initialValue = '', onClose, onSubmit } = taskModalProps
+  const {
+    title,
+    placeholder,
+    submitLabel,
+    initialValue = '',
+    initialDescription = '',
+    descriptionPlaceholder = 'Descricao (opcional)',
+    showDescription = false,
+    onClose,
+    onSubmit,
+  } = taskModalProps
   const [value, setValue] = useState(initialValue)
+  const [description, setDescription] = useState(initialDescription ?? '')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const trimmedValue = value.trim()
+    const trimmedDescription = description.trim()
 
     if (!trimmedValue) {
       return
@@ -28,7 +48,10 @@ function TaskModal(taskModalProps: TaskModalProps) {
     setIsSubmitting(true)
 
     try {
-      await onSubmit(trimmedValue)
+      await onSubmit({
+        title: trimmedValue,
+        description: showDescription && trimmedDescription ? trimmedDescription : null,
+      })
       onClose()
     } finally {
       setIsSubmitting(false)
@@ -54,6 +77,16 @@ function TaskModal(taskModalProps: TaskModalProps) {
           autoFocus
           onChange={(event) => setValue(event.target.value)}
         />
+
+        {showDescription && (
+          <textarea
+            className="task-modal__textarea"
+            value={description}
+            placeholder={descriptionPlaceholder}
+            rows={4}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        )}
 
         <button className="task-modal__submit" type="submit">
           {isSubmitting ? 'Salvando...' : submitLabel}

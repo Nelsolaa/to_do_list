@@ -59,7 +59,8 @@
   font-size: 16px;
 }
 
-.task-modal__input {
+.task-modal__input,
+.task-modal__textarea {
   height: 44px;
   padding: 0 12px;
   border: 2px solid #222;
@@ -71,7 +72,15 @@
   outline: none;
 }
 
-.task-modal__input:focus {
+.task-modal__textarea {
+  min-height: 104px;
+  padding: 12px;
+  resize: vertical;
+  line-height: 1.35;
+}
+
+.task-modal__input:focus,
+.task-modal__textarea:focus {
   border-color: #2d8cf0;
 }
 

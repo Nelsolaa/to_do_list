@@ -124,7 +124,10 @@ function TaskBoard(taskBoardProps: TaskBoardProps) {
                       {task.completed ? 'ok' : ''}
                     </button>
 
-                    <span className="task-item__title">{task.title}</span>
+                    <div className="task-item__text">
+                      <span className="task-item__title">{task.title}</span>
+                      {task.description && <p className="task-item__description">{task.description}</p>}
+                    </div>
 
                     <div className="task-item__actions">
                       <button type="button" onClick={() => onEditTask(list.id, task.id)}>

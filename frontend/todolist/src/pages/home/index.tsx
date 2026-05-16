@@ -34,13 +34,21 @@ type ModalConfig = {
   placeholder: string
   submitLabel: string
   initialValue?: string
-  onSubmit: (value: string) => void | Promise<void>
+  initialDescription?: string | null
+  descriptionPlaceholder?: string
+  showDescription?: boolean
+  onSubmit: (value: TaskModalValue) => void | Promise<void>
 }
 
 type ConfirmConfig = {
   title: string
   message: string
   onConfirm: () => void | Promise<void>
+}
+
+type TaskModalValue = {
+  title: string
+  description: string | null
 }
 
 const defaultList: TaskList = {
@@ -118,7 +126,11 @@ function Home() {
 
     return lists.map((list) => ({
       ...list,
-      tasks: list.tasks.filter((task) => task.title.toLowerCase().includes(normalizedFilter)),
+      tasks: list.tasks.filter((task) => {
+        const searchableText = `${task.title} ${task.description ?? ''}`.toLowerCase()
+
+        return searchableText.includes(normalizedFilter)
+      }),
     }))
   }, [activeFilter, lists])
   const totalTasks = allTasks.length
@@ -130,7 +142,7 @@ function Home() {
       title: 'Nova lista',
       placeholder: 'Nome da lista',
       submitLabel: 'Criar lista',
-      onSubmit: (title) => {
+      onSubmit: ({ title }) => {
         setLists((currentLists) => [
           ...currentLists,
           {
@@ -155,7 +167,7 @@ function Home() {
       placeholder: 'Nome da lista',
       submitLabel: 'Salvar lista',
       initialValue: list.title,
-      onSubmit: (title) => {
+      onSubmit: ({ title }) => {
         setLists((currentLists) =>
           currentLists.map((currentList) => (currentList.id === listId ? { ...currentList, title } : currentList)),
         )
@@ -201,8 +213,10 @@ function Home() {
     setModalConfig({
       title: 'Nova tarefa',
       placeholder: 'O que precisa ser feito?',
+      descriptionPlaceholder: 'Descricao da tarefa (opcional)',
+      showDescription: true,
       submitLabel: 'Adicionar tarefa',
-      onSubmit: async (title) => {
+      onSubmit: async ({ title, description }) => {
         if (!targetListId) {
           return
         }
@@ -211,7 +225,7 @@ function Home() {
 
         const apiTask = await createApiTask({
           titulo: title,
-          descricao: null,
+          descricao: description,
           concluida: false,
         })
         const newTask = mapApiTask(apiTask)
@@ -276,13 +290,16 @@ function Home() {
       placeholder: 'Nome da tarefa',
       submitLabel: 'Salvar tarefa',
       initialValue: task.title,
-      onSubmit: async (title) => {
+      initialDescription: task.description,
+      descriptionPlaceholder: 'Descricao da tarefa (opcional)',
+      showDescription: true,
+      onSubmit: async ({ title, description }) => {
         setErrorMessage('')
 
         const updatedTask = mapApiTask(
           await updateApiTask(taskId, {
             titulo: title,
-            descricao: task.description,
+            descricao: description,
             concluida: task.completed,
           }),
         )

@@ -223,15 +223,30 @@
 }
 
 .task-item__title {
+  display: block;
   color: #222;
   font-size: 15px;
   font-weight: 800;
   overflow-wrap: anywhere;
 }
 
+.task-item__description {
+  margin: 4px 0 0;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
 .task-item--completed .task-item__title {
   color: #64748b;
   text-decoration: line-through;
+}
+
+.task-item--completed .task-item__description {
+  color: #64748b;
 }
 
 @media (max-width: 640px) {
