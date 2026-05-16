@@ -109,7 +109,7 @@
 .task-board__lists {
   min-height: 0;
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
   padding: 0 8px 8px 0;
   display: flex;
   flex-direction: column;
@@ -134,7 +134,11 @@
 }
 
 .task-list {
+  min-height: 0;
+  max-height: 100%;
   padding: 18px;
+  display: flex;
+  flex-direction: column;
   border: 2px solid #222;
   border-radius: 8px;
   box-shadow: 6px 6px 0 #222;
@@ -184,12 +188,32 @@
 }
 
 .task-list__items {
+  min-height: 0;
   margin: 18px 0 0;
-  padding: 0;
+  padding: 0 8px 4px 0;
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
   list-style: none;
+  scrollbar-color: #222 #fffdf6;
+}
+
+.task-list__items::-webkit-scrollbar {
+  width: 10px;
+}
+
+.task-list__items::-webkit-scrollbar-track {
+  border: 2px solid #222;
+  border-radius: 999px;
+  background: #fffdf6;
+}
+
+.task-list__items::-webkit-scrollbar-thumb {
+  border: 2px solid #222;
+  border-radius: 999px;
+  background: #ffd92f;
 }
 
 .task-item {
